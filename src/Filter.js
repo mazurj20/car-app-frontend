@@ -14,19 +14,21 @@ const Filter = () => {
 
   console.log(cars);
 
-  const options = [];
+  let options = [];
 
-  cars.map((car) => {
+  for (let car of cars) {
     options.push({ value: car.manufacturer, label: car.manufacturer });
-    return options;
-  });
+  }
+  let unique = Array.from(
+    new Set(options.map((obj) => JSON.stringify(obj)))
+  ).map((obj) => JSON.parse(obj));
 
   return (
     <div className="filter">
       <Select
         defaultValue={selectedOption}
         onChange={setSelectedOption}
-        options={options}
+        options={unique}
       />
     </div>
   );
