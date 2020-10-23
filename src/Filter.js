@@ -30,7 +30,6 @@ const Filter = () => {
         onChange={setSelectedOption}
         options={unique}
       />
-      <button>submit</button>
     </div>
   );
 };
