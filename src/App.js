@@ -13,7 +13,6 @@ function App() {
       </Switch>
       <div className="links">
         <Link to="/">Home </Link>
-        <Link to="/result">enter </Link>
       </div>
     </main>
   );

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import axios from "./axios.js";
+import { Link } from "react-router-dom";
 
 const Filter = () => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -11,8 +12,6 @@ const Filter = () => {
       setCars(res.data);
     });
   }, []);
-
-  console.log(cars);
 
   let options = [];
 
@@ -25,11 +24,15 @@ const Filter = () => {
 
   return (
     <div className="filter">
-      <Select
-        defaultValue={selectedOption}
-        onChange={setSelectedOption}
-        options={unique}
-      />
+      <>
+        <Select
+          defaultValue={selectedOption}
+          onChange={setSelectedOption}
+          options={unique}
+        />
+
+        <Link to="/result">enter </Link>
+      </>
     </div>
   );
 };
