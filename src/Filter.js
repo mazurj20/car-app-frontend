@@ -25,6 +25,7 @@ const Filter = () => {
   return (
     <div className="filter">
       <>
+        <h1>filter</h1>
         <Select
           defaultValue={selectedOption}
           onChange={setSelectedOption}
