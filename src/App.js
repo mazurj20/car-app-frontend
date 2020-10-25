@@ -1,7 +1,7 @@
 import React from "react";
-import Filter from "./Filter";
-import Result from "./Result";
-import "./App.css";
+import Filter from "./Components/Filter";
+import Result from "./Components/Result";
+import "./Styles/App.css";
 import { Switch, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 
