@@ -11,7 +11,7 @@ function App() {
       <Navbar />
       <main>
         <Switch>
-          <Route path="/" component={Filter} exact />
+          <Route exact path="/" component={Filter} />
           <Route path="/result" component={Result} />
         </Switch>
       </main>
