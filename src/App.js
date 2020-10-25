@@ -2,19 +2,20 @@ import React from "react";
 import Filter from "./Filter";
 import Result from "./Result";
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+import Navbar from "./Components/Navbar";
 
 function App() {
   return (
-    <main>
-      <Switch>
-        <Route path="/" component={Filter} exact />
-        <Route path="/result" component={Result} />
-      </Switch>
-      <div className="links">
-        <Link to="/">Home </Link>
-      </div>
-    </main>
+    <div>
+      <Navbar />
+      <main>
+        <Switch>
+          <Route path="/" component={Filter} exact />
+          <Route path="/result" component={Result} />
+        </Switch>
+      </main>
+    </div>
   );
 }
 
