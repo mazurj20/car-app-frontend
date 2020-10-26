@@ -13,9 +13,6 @@ const Filter = () => {
     });
   }, []);
 
-  axios.get("/test?color=blue&name=tim")
-
-
   let options = [];
 
   for (let car of cars) {
