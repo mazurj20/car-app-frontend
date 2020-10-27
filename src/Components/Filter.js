@@ -4,12 +4,14 @@ import axios from "../axios.js";
 import { Redirect } from "react-router-dom";
 
 const Filter = () => {
-  const [manufacturer, setManufacturer] = useState({key: "manufacturer", value: null});
-  const [color, setColor] = useState({key: "color", value: null})
+  const [manufacturer, setManufacturer] = useState({
+    key: "manufacturer",
+    value: null,
+  });
+  const [color, setColor] = useState({ key: "color", value: null });
   const [cars, setCars] = useState([]);
-  const filters = [manufacturer, color]
+  const filters = [manufacturer, color];
 
-  
   useEffect(() => {
     axios.get("/cars").then((res) => {
       setCars(res.data);
@@ -17,14 +19,20 @@ const Filter = () => {
   }, []);
 
   const handleFilterSubmit = () => {
-    filters.map((filter)=>{
+    let url = "/result";
+    filters.map((filter, i) => {
       if (filter.value !== null) {
-        //add the object to the url
+        if (i === 0) {
+          url = url + `?${filter.key}=${filter.value}`;
+        } else {
+          url = url + `&${filter.key}=${filter.value}`;
+        }
       }
-    })
-  }
+    });
+    console.log(url);
+  };
 
-  axios.get(`/test`)
+  axios.get(`/test`);
 
   let options = [];
 
@@ -34,7 +42,7 @@ const Filter = () => {
   let unique = Array.from(
     new Set(options.map((obj) => JSON.stringify(obj)))
   ).map((obj) => JSON.parse(obj));
-  
+
   return (
     <div className="filter">
       <>
