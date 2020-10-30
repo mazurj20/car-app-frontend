@@ -1,0 +1,7 @@
+.carDisplay__container {
+  background: rgb(224, 224, 224);
+  border-radius: 2px;
+  margin: 50px;
+  padding: 20px;
+  overflow: hidden;
+}

@@ -6,20 +6,19 @@ import { useHistory } from "react-router-dom";
 const Filter = () => {
   const history = useHistory();
   const [cars, setCars] = useState([]);
-  const [manufacturer, setManufacturer] = useState({
-    key: "manufacturer",
-    value: null,
-  });
-  const [color, setColor] = useState({ 
-    key: "color", 
-    value: null 
-  });
+  const [manufacturer, setManufacturer] = useState({key: "manufacturer", value: null });
+  const [color, setColor] = useState({ key: "paint_color", value: null });
+  const [year, setYear] = useState({ key: "year", value: null });
+  const [model, setModel] = useState({ key: "model", value: null });
+  const [size, setSize] = useState({ key: "size", value: null });
+  const [state, setState] = useState({ key: "state", value: null });
+ 
   const filters = [manufacturer, color];
 
   useEffect(() => {
     axios.get("/test").then((res) => {
       setCars(res.data);
-    });
+    })
   }, []);
 
   const handleFilterSubmit = () => {
@@ -33,7 +32,8 @@ const Filter = () => {
         }
       }
     });
-    history.push("/result", { results: cars });
+   
+    history.push("/results", { results: cars });
   };
 
   let options = [];
