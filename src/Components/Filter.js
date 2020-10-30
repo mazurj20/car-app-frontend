@@ -5,16 +5,19 @@ import { useHistory } from "react-router-dom";
 
 const Filter = () => {
   const history = useHistory();
+  const [cars, setCars] = useState([]);
   const [manufacturer, setManufacturer] = useState({
     key: "manufacturer",
     value: null,
   });
-  const [color, setColor] = useState({ key: "color", value: null });
-  const [cars, setCars] = useState([]);
+  const [color, setColor] = useState({ 
+    key: "color", 
+    value: null 
+  });
   const filters = [manufacturer, color];
 
   useEffect(() => {
-    axios.get("/cars").then((res) => {
+    axios.get("/test").then((res) => {
       setCars(res.data);
     });
   }, []);
@@ -30,25 +33,10 @@ const Filter = () => {
         }
       }
     });
-
-
-    console.log(url);
-    console.log(manufacturer);
-
-    let value = manufacturer.value;
-    let resultArr = [];
-    for (let car of cars) {
-      if (car.manufacturer === value) {
-        resultArr.push(car.image_url);
-      }
-    }
-
-    console.log(resultArr);
-    history.push("/result", { results: resultArr });
+    history.push("/result", { results: cars });
   };
 
   let options = [];
-
   for (let car of cars) {
     options.push({
       value: car.manufacturer,
