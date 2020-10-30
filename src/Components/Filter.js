@@ -32,7 +32,7 @@ const Filter = () => {
     console.log(url);
   };
 
-  axios.get(`/test`);
+  axios.get(`/cars2`);
 
   let options = [];
 
