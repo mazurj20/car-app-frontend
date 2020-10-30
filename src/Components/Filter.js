@@ -9,13 +9,31 @@ const Filter = () => {
     key: "manufacturer",
     value: null,
   });
-  const [color, setColor] = useState({ key: "color", value: null });
-  const [cars, setCars] = useState([]);
+  const [color, setColor] = useState({ key: "paint_color", value: null });
+  const [year, setYear] = useState({ key: "year", value: null });
+  const [model, setModel] = useState({ key: "model", value: null });
+  const [size, setSize] = useState({ key: "size", value: null });
+  const [state, setState] = useState({ key: "state", value: null });
+  const [cars, setCars] = useState({ key: "state", value: null });
+ 
   const filters = [manufacturer, color];
 
   useEffect(() => {
-    axios.get("/cars").then((res) => {
+    axios.get("/test").then((res) => {
       setCars(res.data);
+    axios.get("/manufacturers").then((res) => {
+      setManufacturer(res.data);
+    axios.get("/year").then((res) => {
+      setYear(res.data);
+    axios.get("/model").then((res) => {
+      setModel(res.data);
+    axios.get("/size").then((res) => {
+      setSize(res.data);
+    axios.get("/color").then((res) => {
+      setColor(res.data);
+    axios.get("/state").then((res) => {
+      setState(res.data);
+    
     });
   }, []);
 
@@ -30,18 +48,10 @@ const Filter = () => {
         }
       }
     });
-    console.log(url);
-    console.log(manufacturer);
-    let value = manufacturer.value;
-    let resultArr = [];
-    for (let car of cars) {
-      if (car.manufacturer === value) {
-        resultArr.push(car.image_url);
-      }
-    }
+   
 
-    console.log(resultArr);
-    history.push("/result", { results: resultArr });
+    
+    history.push("/results", { results: cars });
   };
 
   let options = [];
