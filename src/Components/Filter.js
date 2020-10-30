@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import axios from "../axios.js";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Filter = () => {
+  const history = useHistory();
   const [manufacturer, setManufacturer] = useState({
     key: "manufacturer",
     value: null,
@@ -30,14 +31,27 @@ const Filter = () => {
       }
     });
     console.log(url);
-  };
+    console.log(manufacturer);
+    let value = manufacturer.value;
+    let resultArr = [];
+    for (let car of cars) {
+      if (car.manufacturer === value) {
+        resultArr.push(car.image_url);
+      }
+    }
 
-  axios.get(`/test`);
+    console.log(resultArr);
+    history.push("/result", { results: resultArr });
+  };
 
   let options = [];
 
   for (let car of cars) {
-    options.push({ value: car.manufacturer, label: car.manufacturer });
+    options.push({
+      value: car.manufacturer,
+      label: car.manufacturer,
+      key: "manufacturer",
+    });
   }
   let unique = Array.from(
     new Set(options.map((obj) => JSON.stringify(obj)))
