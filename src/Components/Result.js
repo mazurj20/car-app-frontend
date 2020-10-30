@@ -1,9 +1,13 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 const Result = () => {
+  const location = useLocation();
+  const cars = location.state.results;
+
   return (
     <div className="result">
-      <h1>hello</h1>
+      <p>{cars}</p>
     </div>
   );
 };
