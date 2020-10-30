@@ -12,7 +12,7 @@ function App() {
       <main>
         <Switch>
           <Route exact path="/" component={Filter} />
-          <Route path="/result" component={Result} />
+          <Route exact path="/results" component={Result} />
         </Switch>
       </main>
     </div>
