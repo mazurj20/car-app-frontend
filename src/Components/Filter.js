@@ -5,15 +5,14 @@ import { useHistory } from "react-router-dom";
 
 const Filter = () => {
   const history = useHistory();
-  const [manufacturer, setManufacturer] = useState({
-    key: "manufacturer",
-    value: null,
-  });
+  const [cars, setCars] = useState([]);
+  const [manufacturer, setManufacturer] = useState({key: "manufacturer", value: null });
   const [color, setColor] = useState({ key: "paint_color", value: null });
   const [year, setYear] = useState({ key: "year", value: null });
   const [model, setModel] = useState({ key: "model", value: null });
   const [size, setSize] = useState({ key: "size", value: null });
   const [state, setState] = useState({ key: "state", value: null });
+
   const [cars, setCars] = useState({ key: "state", value: null });
   const [colorOpt, setColorOpt] = useState([]);
   const [yearOpt, setYearOpt] = useState([]);
@@ -39,6 +38,10 @@ const Filter = () => {
     axios.get("/size").then((res) => setSizeOpt(res.data));
     axios.get("/color").then((res) => setColorOpt(res.data));
     axios.get("/state").then((res) => setStateOpt(res.data));
+
+ 
+  
+
   }, []);
 
   const handleFilterSubmit = () => {
@@ -53,6 +56,7 @@ const Filter = () => {
       }
     });
 
+
     history.push(url, { results: cars });
   };
 
@@ -61,6 +65,10 @@ const Filter = () => {
     newArr.push({
       value: value,
       label: value,
+
+   
+    
+
       key: "manufacturer",
     });
   }
