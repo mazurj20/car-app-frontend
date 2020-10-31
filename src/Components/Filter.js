@@ -12,13 +12,36 @@ const Filter = () => {
   const [model, setModel] = useState({ key: "model", value: null });
   const [size, setSize] = useState({ key: "size", value: null });
   const [state, setState] = useState({ key: "state", value: null });
- 
-  const filters = [manufacturer, color];
+
+  const [cars, setCars] = useState({ key: "state", value: null });
+  const [colorOpt, setColorOpt] = useState([]);
+  const [yearOpt, setYearOpt] = useState([]);
+  const [modelOpt, setModelOpt] = useState([]);
+  const [sizeOpt, setSizeOpt] = useState([]);
+  const [stateOpt, setStateOpt] = useState([]);
+  const [carsOpt, setCarsOpt] = useState([]);
+  const [manufacturerOpt, setManufacturerOpt] = useState([]);
+
+  const filters = [manufacturer, color, year, model, size, state];
+  let manuOptions = [];
+  let yearOptions = [];
+  let modelOptions = [];
+  let sizeOptions = [];
+  let colorOptions = [];
+  let stateOptions = [];
 
   useEffect(() => {
-    axios.get("/test").then((res) => {
-      setCars(res.data);
-    })
+    axios.get("/test").then((res) => setCars(res.data));
+    axios.get("/manufacturers").then((res) => setManufacturerOpt(res.data));
+    axios.get("/year").then((res) => setYearOpt(res.data));
+    axios.get("/model").then((res) => setModelOpt(res.data));
+    axios.get("/size").then((res) => setSizeOpt(res.data));
+    axios.get("/color").then((res) => setColorOpt(res.data));
+    axios.get("/state").then((res) => setStateOpt(res.data));
+
+ 
+  
+
   }, []);
 
   const handleFilterSubmit = () => {
@@ -32,21 +55,23 @@ const Filter = () => {
         }
       }
     });
-   
-    history.push("/results", { results: cars });
+
+
+    history.push(url, { results: cars });
   };
 
-  let options = [];
-  for (let car of cars) {
-    options.push({
-      value: car.manufacturer,
-      label: car.manufacturer,
+  let newArr = [];
+  for (let value of manufacturerOpt) {
+    newArr.push({
+      value: value,
+      label: value,
+
+   
+    
+
       key: "manufacturer",
     });
   }
-  let unique = Array.from(
-    new Set(options.map((obj) => JSON.stringify(obj)))
-  ).map((obj) => JSON.parse(obj));
 
   return (
     <div className="filter">
@@ -55,7 +80,7 @@ const Filter = () => {
         <Select
           defaultValue={manufacturer}
           onChange={setManufacturer}
-          options={unique}
+          options={newArr}
         />
         <button onClick={handleFilterSubmit}>enter</button>
       </>
