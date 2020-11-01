@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 
 const Filter = () => {
   const history = useHistory();
-  const [cars, setCars] = useState([]);
   const [manufacturer, setManufacturer] = useState({key: "manufacturer", value: null });
   const [color, setColor] = useState({ key: "paint_color", value: null });
   const [year, setYear] = useState({ key: "year", value: null });
@@ -13,7 +12,6 @@ const Filter = () => {
   const [size, setSize] = useState({ key: "size", value: null });
   const [state, setState] = useState({ key: "state", value: null });
 
-  const [cars, setCars] = useState({ key: "state", value: null });
   const [colorOpt, setColorOpt] = useState([]);
   const [yearOpt, setYearOpt] = useState([]);
   const [modelOpt, setModelOpt] = useState([]);
@@ -31,21 +29,16 @@ const Filter = () => {
   let stateOptions = [];
 
   useEffect(() => {
-    axios.get("/test").then((res) => setCars(res.data));
     axios.get("/manufacturers").then((res) => setManufacturerOpt(res.data));
     axios.get("/year").then((res) => setYearOpt(res.data));
     axios.get("/model").then((res) => setModelOpt(res.data));
     axios.get("/size").then((res) => setSizeOpt(res.data));
     axios.get("/color").then((res) => setColorOpt(res.data));
     axios.get("/state").then((res) => setStateOpt(res.data));
-
- 
-  
-
   }, []);
 
   const handleFilterSubmit = () => {
-    let url = "/result";
+    let url = "/results";
     filters.map((filter, i) => {
       if (filter.value !== null) {
         if (i === 0) {
@@ -55,9 +48,7 @@ const Filter = () => {
         }
       }
     });
-
-
-    history.push(url, { results: cars });
+    history.push(url, {url: url});
   };
 
   let newArr = [];
@@ -65,10 +56,6 @@ const Filter = () => {
     newArr.push({
       value: value,
       label: value,
-
-   
-    
-
       key: "manufacturer",
     });
   }
