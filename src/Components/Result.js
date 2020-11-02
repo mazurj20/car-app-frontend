@@ -8,6 +8,9 @@ const Result = () => {
 
   return (
     <div>
+      <div className="filter">
+        
+      </div>
       {cars.map((car) => (
         <CarDisplay car={car} />
       ))}

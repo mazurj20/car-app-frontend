@@ -13,7 +13,6 @@ const Filter = () => {
   const [size, setSize] = useState({ key: "size", value: null });
   const [state, setState] = useState({ key: "state", value: null });
 
-  const [cars, setCars] = useState({ key: "state", value: null });
   const [colorOpt, setColorOpt] = useState([]);
   const [yearOpt, setYearOpt] = useState([]);
   const [modelOpt, setModelOpt] = useState([]);
@@ -31,21 +30,17 @@ const Filter = () => {
   let stateOptions = [];
 
   useEffect(() => {
-    axios.get("/test").then((res) => setCars(res.data));
+    axios.get("/results").then((res) => setCars(res.data));
     axios.get("/manufacturers").then((res) => setManufacturerOpt(res.data));
     axios.get("/year").then((res) => setYearOpt(res.data));
     axios.get("/model").then((res) => setModelOpt(res.data));
     axios.get("/size").then((res) => setSizeOpt(res.data));
     axios.get("/color").then((res) => setColorOpt(res.data));
     axios.get("/state").then((res) => setStateOpt(res.data));
-
- 
-  
-
   }, []);
 
   const handleFilterSubmit = () => {
-    let url = "/result";
+    let url = "/results";
     filters.map((filter, i) => {
       if (filter.value !== null) {
         if (i === 0) {
