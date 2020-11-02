@@ -5,8 +5,10 @@ import { useHistory } from "react-router-dom";
 
 const Filter = () => {
   const history = useHistory();
-  const [cars, setCars] = useState([]);
-  const [manufacturer, setManufacturer] = useState({key: "manufacturer", value: null });
+  const [manufacturer, setManufacturer] = useState({
+    key: "manufacturer",
+    value: null,
+  });
   const [color, setColor] = useState({ key: "paint_color", value: null });
   const [year, setYear] = useState({ key: "year", value: null });
   const [model, setModel] = useState({ key: "model", value: null });
@@ -21,7 +23,7 @@ const Filter = () => {
   const [carsOpt, setCarsOpt] = useState([]);
   const [manufacturerOpt, setManufacturerOpt] = useState([]);
 
-  const filters = [manufacturer, color, year, model, size, state];
+  const filters = [manufacturer, model, color, year, size, state];
   let manuOptions = [];
   let yearOptions = [];
   let modelOptions = [];
@@ -30,7 +32,6 @@ const Filter = () => {
   let stateOptions = [];
 
   useEffect(() => {
-    axios.get("/results").then((res) => setCars(res.data));
     axios.get("/manufacturers").then((res) => setManufacturerOpt(res.data));
     axios.get("/year").then((res) => setYearOpt(res.data));
     axios.get("/model").then((res) => setModelOpt(res.data));
@@ -41,30 +42,43 @@ const Filter = () => {
 
   const handleFilterSubmit = () => {
     let url = "/results";
-    filters.map((filter, i) => {
+    let selectedFilters = [];
+    filters.map((filter) => {
       if (filter.value !== null) {
-        if (i === 0) {
-          url = url + `?${filter.key}=${filter.value}`;
-        } else {
-          url = url + `&${filter.key}=${filter.value}`;
-        }
+        selectedFilters.push(filter);
       }
     });
-
-
-    history.push(url, { results: cars });
+    selectedFilters.map((filter, i) => {
+      if (i === 0) {
+        url = url + `?${filter.key}=${filter.value}`;
+      } else {
+        url = url + `&${filter.key}=${filter.value}`;
+      }
+    });
+    history.push(url, { url: url });
   };
 
-  let newArr = [];
   for (let value of manufacturerOpt) {
-    newArr.push({
+    manuOptions.push({
       value: value,
       label: value,
-
-   
-    
-
       key: "manufacturer",
+    });
+  }
+
+  for (let value of stateOpt) {
+    stateOptions.push({
+      value: value,
+      label: value,
+      key: "state",
+    });
+  }
+
+  for (let value of colorOpt) {
+    colorOptions.push({
+      value: value,
+      label: value,
+      key: "paint_color",
     });
   }
 
@@ -75,7 +89,17 @@ const Filter = () => {
         <Select
           defaultValue={manufacturer}
           onChange={setManufacturer}
-          options={newArr}
+          options={manuOptions}
+        />
+        <Select
+          defaultValue={state}
+          onChange={setState}
+          options={stateOptions}
+        />
+        <Select
+          defaultValue={color}
+          onChange={setColor}
+          options={colorOptions}
         />
         <button onClick={handleFilterSubmit}>enter</button>
       </>

@@ -1,16 +1,20 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useLocation } from "react-router-dom";
 import CarDisplay from './CarDisplay'
+import axios from '../axios'
 
 const Result = () => {
-  const location = useLocation();
-  const cars = location.state.results;
+  const [cars, setCars] = useState([]);
+  const location = useLocation()
+  const url = location.state.url
+
+  useEffect(() => {
+    axios.get(url).then((res) => setCars(res.data));
+  }, []);
 
   return (
+    
     <div>
-      <div className="filter">
-        
-      </div>
       {cars.map((car) => (
         <CarDisplay car={car} />
       ))}
