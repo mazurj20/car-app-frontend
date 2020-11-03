@@ -10,7 +10,15 @@ function CarDetails({match}) {
       
       return (
         <div>
-            {car && (<div>{car.state}</div>)}
+            {car && (
+                <div className="cardetail__container">
+                    <img src={`${car[0].image_url}`} />
+                    <p>{car[0].state}</p>
+                    <p>{car[0].manufacturer}</p>
+                    <p>{car[0].model}</p>
+                    <p>{car[0].condition}</p>
+                    <p>{car[0].size}</p>
+                </div>)}
         </div>
     )
 }

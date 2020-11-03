@@ -1,3 +1,23 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgb(102, 102, 155);
+}
+.navbar__right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar__title {
+  color: white;
+  padding: 10px;
+}
 .navbar__element {
-  color: blue;
+  color: white;
+  padding: 10px;
 }
