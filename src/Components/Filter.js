@@ -40,15 +40,19 @@ const Filter = () => {
     axios.get("/state").then((res) => setStateOpt(res.data));
   }, []);
 
-  const handleFilterSubmit = () => {
-    let url = "/results";
+  const addSelections = () => {
     let selectedFilters = [];
     filters.map((filter) => {
       if (filter.value !== null) {
         selectedFilters.push(filter);
       }
     });
-    selectedFilters.map((filter, i) => {
+    return selectedFilters;
+  };
+
+  const handleFilterSubmit = () => {
+    let url = "/results";
+    addSelections().map((filter, i) => {
       if (i === 0) {
         url = url + `?${filter.key}=${filter.value}`;
       } else {
