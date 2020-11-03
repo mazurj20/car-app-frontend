@@ -1,0 +1,23 @@
+.cardetail__container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardetail__details {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+}
+
+img {
+  width: 50%;
+}
+
+.cardetail__specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
