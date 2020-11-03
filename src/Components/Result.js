@@ -13,6 +13,7 @@ const Result = () => {
   }, []);
 
   return (
+    
     <div>
       {cars.map((car) => (
         <CarDisplay car={car} />
