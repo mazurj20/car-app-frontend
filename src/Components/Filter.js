@@ -58,29 +58,19 @@ const Filter = () => {
     history.push(url, { url: url });
   };
 
-  for (let value of manufacturerOpt) {
-    manuOptions.push({
-      value: value,
-      label: value,
-      key: "manufacturer",
-    });
-  }
+  const createSelections = (arr, key, newArr) => {
+    for (let value of arr) {
+      newArr.push({
+        value: value,
+        label: value,
+        key: key,
+      });
+    }
+  };
 
-  for (let value of stateOpt) {
-    stateOptions.push({
-      value: value,
-      label: value,
-      key: "state",
-    });
-  }
-
-  for (let value of colorOpt) {
-    colorOptions.push({
-      value: value,
-      label: value,
-      key: "paint_color",
-    });
-  }
+  createSelections(manufacturerOpt, "manufacturer", manuOptions);
+  createSelections(colorOpt, "paint_color", colorOptions);
+  createSelections(stateOpt, "state", stateOptions);
 
   return (
     <div className="filter">
