@@ -14,10 +14,11 @@ const Filter = () => {
   const [model, setModel] = useState({ key: "model", value: null });
   const [size, setSize] = useState({ key: "size", value: null });
   const [state, setState] = useState({ key: "state", value: null });
-
   const [colorOpt, setColorOpt] = useState([]);
   const [yearOpt, setYearOpt] = useState([]);
-  const [modelOpt, setModelOpt] = useState([]);
+  const [modelOpt, setModelOpt] = useState([
+    { manufacturer: null, model: null },
+  ]);
   const [sizeOpt, setSizeOpt] = useState([]);
   const [stateOpt, setStateOpt] = useState([]);
   const [carsOpt, setCarsOpt] = useState([]);
@@ -40,15 +41,19 @@ const Filter = () => {
     axios.get("/state").then((res) => setStateOpt(res.data));
   }, []);
 
-  const handleFilterSubmit = () => {
-    let url = "/results";
+  const addSelections = () => {
     let selectedFilters = [];
     filters.map((filter) => {
       if (filter.value !== null) {
         selectedFilters.push(filter);
       }
     });
-    selectedFilters.map((filter, i) => {
+    return selectedFilters;
+  };
+
+  const handleFilterSubmit = () => {
+    let url = "/results";
+    addSelections().map((filter, i) => {
       if (i === 0) {
         url = url + `?${filter.key}=${filter.value}`;
       } else {
@@ -58,29 +63,21 @@ const Filter = () => {
     history.push(url, { url: url });
   };
 
-  for (let value of manufacturerOpt) {
-    manuOptions.push({
-      value: value,
-      label: value,
-      key: "manufacturer",
-    });
-  }
+  const createSelections = (arr, key, newArr) => {
+    for (let value of arr) {
+      newArr.push({
+        value: value,
+        label: value,
+        key: key,
+      });
+    }
+  };
 
-  for (let value of stateOpt) {
-    stateOptions.push({
-      value: value,
-      label: value,
-      key: "state",
-    });
-  }
+  const getModels = () => {};
 
-  for (let value of colorOpt) {
-    colorOptions.push({
-      value: value,
-      label: value,
-      key: "paint_color",
-    });
-  }
+  createSelections(manufacturerOpt, "manufacturer", manuOptions);
+  createSelections(colorOpt, "paint_color", colorOptions);
+  createSelections(stateOpt, "state", stateOptions);
 
   return (
     <div className="filter">
@@ -100,6 +97,11 @@ const Filter = () => {
           defaultValue={color}
           onChange={setColor}
           options={colorOptions}
+        />
+        <Select
+          defaultValue={model}
+          onChange={setModel}
+          options={modelOptions}
         />
         <button onClick={handleFilterSubmit}>enter</button>
       </>
