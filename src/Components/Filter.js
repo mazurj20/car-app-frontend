@@ -14,10 +14,11 @@ const Filter = () => {
   const [model, setModel] = useState({ key: "model", value: null });
   const [size, setSize] = useState({ key: "size", value: null });
   const [state, setState] = useState({ key: "state", value: null });
-
   const [colorOpt, setColorOpt] = useState([]);
   const [yearOpt, setYearOpt] = useState([]);
-  const [modelOpt, setModelOpt] = useState([]);
+  const [modelOpt, setModelOpt] = useState([
+    { manufacturer: null, model: null },
+  ]);
   const [sizeOpt, setSizeOpt] = useState([]);
   const [stateOpt, setStateOpt] = useState([]);
   const [carsOpt, setCarsOpt] = useState([]);
@@ -72,6 +73,8 @@ const Filter = () => {
     }
   };
 
+  const getModels = () => {};
+
   createSelections(manufacturerOpt, "manufacturer", manuOptions);
   createSelections(colorOpt, "paint_color", colorOptions);
   createSelections(stateOpt, "state", stateOptions);
@@ -94,6 +97,11 @@ const Filter = () => {
           defaultValue={color}
           onChange={setColor}
           options={colorOptions}
+        />
+        <Select
+          defaultValue={model}
+          onChange={setModel}
+          options={modelOptions}
         />
         <button onClick={handleFilterSubmit}>enter</button>
       </>
