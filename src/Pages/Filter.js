@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import axios from "../axios.js";
 import { useHistory } from "react-router-dom";
-import '../Styles/Filter.css'
-import CarDisplay from '../Components/CarDisplay'
+import "../Styles/Filter.css";
+import CarDisplay from "../Components/CarDisplay";
 
 const Filter = () => {
   const history = useHistory();
@@ -16,6 +16,7 @@ const Filter = () => {
   const [model, setModel] = useState({ key: "model", value: null });
   const [size, setSize] = useState({ key: "size", value: null });
   const [state, setState] = useState({ key: "state", value: null });
+  const [price, setPrice] = useState({ key: "price", value: null });
   const [colorOpt, setColorOpt] = useState([]);
   const [yearOpt, setYearOpt] = useState([]);
   const [modelOpt, setModelOpt] = useState([
@@ -26,15 +27,41 @@ const Filter = () => {
   const [carsOpt, setCarsOpt] = useState([]);
   const [manufacturerOpt, setManufacturerOpt] = useState([]);
 
-  const [newestCars, setNewestCars] = useState([])
+  const [newestCars, setNewestCars] = useState([]);
 
-  const filters = [manufacturer, model, color, year, size, state];
+  const filters = [manufacturer, model, color, year, size, state, price];
   let manuOptions = [];
   let yearOptions = [];
   let modelOptions = [];
   let sizeOptions = [];
   let colorOptions = [];
   let stateOptions = [];
+  let priceOptions = [];
+  let priceOpt = [
+    2000,
+    4000,
+    6000,
+    8000,
+    10000,
+    15000,
+    20000,
+    25000,
+    30000,
+    35000,
+    40000,
+    45000,
+    50000,
+    60000,
+    70000,
+    80000,
+    90000,
+    100000,
+    125000,
+    150000,
+    175000,
+    200000,
+    250000,
+  ];
 
   useEffect(() => {
     axios.get("/manufacturers").then((res) => setManufacturerOpt(res.data));
@@ -61,6 +88,8 @@ const Filter = () => {
     addSelections().map((filter, i) => {
       if (i === 0) {
         url = url + `?${filter.key}=${filter.value}`;
+      } else if (filter === price) {
+        url = url + `&${filter.key}={$lte=${filter.value}}`;
       } else {
         url = url + `&${filter.key}=${filter.value}`;
       }
@@ -78,37 +107,52 @@ const Filter = () => {
     }
   };
 
-  const getModels = () => {};
+  for (let value of priceOpt) {
+    priceOptions.push({
+      value: value,
+      label: `$${value}`,
+      key: "price",
+    });
+  }
 
   createSelections(manufacturerOpt, "manufacturer", manuOptions);
   createSelections(colorOpt, "paint_color", colorOptions);
   createSelections(stateOpt, "state", stateOptions);
-
   return (
     <div>
       <h1 className="filter__header">Find your next match</h1>
       <div className="filter__filter">
-          <Select
-            defaultValue={manufacturer}
-            onChange={setManufacturer}
-            options={manuOptions}
-          />
-          <Select
-            defaultValue={state}
-            onChange={setState}
-            options={stateOptions}
-          />
-          <Select
-            defaultValue={color}
-            onChange={setColor}
-            options={colorOptions}
-          />
-          <Select
-            defaultValue={model}
-            onChange={setModel}
-            options={modelOptions}
-          />
-          <button onClick={handleFilterSubmit}>enter</button>
+        <Select
+          defaultValue={"manufacturer"}
+          onChange={setManufacturer}
+          options={manuOptions}
+          placeholder={"manufacturer"}
+        />
+        <Select
+          defaultValue={"state"}
+          onChange={setState}
+          options={stateOptions}
+          placeholder={`state`}
+        />
+        <Select
+          defaultValue={"color"}
+          onChange={setColor}
+          options={colorOptions}
+          placeholder={`color`}
+        />
+        <Select
+          defaultValue={"model"}
+          onChange={setModel}
+          options={modelOptions}
+          placeholder={`model`}
+        />
+        <Select
+          defaultValue={"max price"}
+          onChange={setPrice}
+          options={priceOptions}
+          placeholder={`max price`}
+        />
+        <button onClick={handleFilterSubmit}>enter</button>
       </div>
       <h1>new cars</h1>
       <div className="filter__body">
