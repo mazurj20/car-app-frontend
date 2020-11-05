@@ -2,11 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  background-color: rgb(223, 223, 223);
+  z-index: 3;
   position: sticky;
   top: 0;
   left: 0;
-  width: 100%;
-  background-color: rgb(102, 102, 155);
 }
 .navbar__right {
   display: flex;
@@ -15,7 +16,11 @@
 }
 .navbar__title {
   color: white;
-  padding: 10px;
+  padding: 7px;
+}
+.navbar__title > img {
+  height: 50px;
+  width: 80px;
 }
 .navbar__element {
   color: white;
