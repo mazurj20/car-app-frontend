@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { useLocation } from "react-router-dom";
-import CarDisplay from './CarDisplay'
+import CarDisplay from '../Components/CarDisplay'
 import axios from '../axios'
 import '../Styles/Result.css'
 import {Link} from 'react-router-dom'

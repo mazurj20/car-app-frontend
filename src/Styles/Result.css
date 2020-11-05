@@ -3,11 +3,11 @@
 }
 
 .sidebar__filter {
-  width: 30%;
+  width: 26%;
   height: 85vh;
   background-color: rgb(196, 196, 196);
   padding: 10px;
-  left: 20px;
-  top: 70px;
+  left: 10px;
+  top: 80px;
   position: sticky;
 }

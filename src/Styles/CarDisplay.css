@@ -2,8 +2,8 @@
   display: flex;
   background: rgb(224, 224, 224);
   border-radius: 2px;
-  margin: 50px;
-  padding: 20px;
+  margin: 15px;
+  padding: 5px;
   overflow: hidden;
 }
 .carDisplay__left,

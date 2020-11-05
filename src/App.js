@@ -1,10 +1,10 @@
 import React from "react";
-import Filter from "./Components/Filter";
-import Result from "./Components/Result";
+import Filter from "./Pages/Filter";
+import Result from "./Pages/Result";
 import "./Styles/App.css";
 import { Switch, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
-import CarDetails from './Components/CarDetails'
+import CarDetails from './Pages/CarDetails'
 
 function App() {
   return (
