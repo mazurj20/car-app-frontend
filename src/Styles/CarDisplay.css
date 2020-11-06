@@ -1,10 +1,16 @@
 .carDisplay__container {
   display: flex;
-  background: rgb(224, 224, 224);
+  background: rgb(255, 255, 255);
   border-radius: 2px;
-  margin: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 2px;
   padding: 5px;
   overflow: hidden;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+.carDisplay__container:hover {
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
 }
 .carDisplay__left,
 .carDisplay__right {
@@ -14,7 +20,7 @@
 .carDisplay__left > img {
   width: 100%;
   height: 100%;
-  max-height: 50vh;
+  height: 40vh;
 }
 
 .carDisplay__right {

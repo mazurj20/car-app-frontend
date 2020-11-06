@@ -1,13 +1,21 @@
 .result__container {
   display: flex;
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+
+.result__body {
+  margin-top: 10px;
+  width: 75%;
+  margin-left: 20px;
 }
 
 .sidebar__filter {
-  width: 26%;
-  height: 85vh;
-  background-color: rgb(196, 196, 196);
+  width: 17%;
+  height: 88vh;
+  background-color: rgb(255, 255, 255);
   padding: 10px;
   left: 10px;
-  top: 80px;
+  margin-top: 10px;
   position: sticky;
 }

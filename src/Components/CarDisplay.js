@@ -14,6 +14,7 @@ function CarDisplay({car}) {
                 <p>{car.model}</p>
                 <p>{car.condition}</p>
                 <p>{car.size}</p>
+                <p>{car.price}</p>
             </div>
         </div>
         </Link>
