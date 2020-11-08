@@ -15,9 +15,8 @@
 }
 .filter__body {
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   overflow: auto;
-  white-space: nowrap;
   padding: 20px;
 }
 .filter__footer {

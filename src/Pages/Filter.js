@@ -78,12 +78,10 @@ const Filter = () => {
     }
   };
 
-  const getModels = () => {};
-
   createSelections(manufacturerOpt, "manufacturer", manuOptions);
   createSelections(colorOpt, "paint_color", colorOptions);
   createSelections(stateOpt, "state", stateOptions);
-
+  
   return (
     <div>
       <h1 className="filter__header">Find your next match</h1>
