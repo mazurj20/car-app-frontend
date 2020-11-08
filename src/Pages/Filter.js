@@ -16,7 +16,7 @@ const Filter = () => {
   const [model, setModel] = useState({ key: "model", value: null });
   const [size, setSize] = useState({ key: "size", value: null });
   const [state, setState] = useState({ key: "state", value: null });
-  const [price, setPrice] = useState({ key: "price", value: null });
+  const [maxPrice, setMaxPrice] = useState({ key: "max-price", value: null });
   const [colorOpt, setColorOpt] = useState([]);
   const [yearOpt, setYearOpt] = useState([]);
   const [modelOpt, setModelOpt] = useState([
@@ -29,7 +29,7 @@ const Filter = () => {
 
   const [newestCars, setNewestCars] = useState([]);
 
-  const filters = [manufacturer, model, color, year, size, state, price];
+  const filters = [manufacturer, model, color, year, size, state, maxPrice];
   let manuOptions = [];
   let yearOptions = [];
   let modelOptions = [];
@@ -88,8 +88,6 @@ const Filter = () => {
     addSelections().map((filter, i) => {
       if (i === 0) {
         url = url + `?${filter.key}=${filter.value}`;
-      } else if (filter === price) {
-        url = url + `&${filter.key}={$lte=${filter.value}}`;
       } else {
         url = url + `&${filter.key}=${filter.value}`;
       }
@@ -111,7 +109,7 @@ const Filter = () => {
     priceOptions.push({
       value: value,
       label: `$${value}`,
-      key: "price",
+      key: "max-price",
     });
   }
 
@@ -148,7 +146,7 @@ const Filter = () => {
         />
         <Select
           defaultValue={"max price"}
-          onChange={setPrice}
+          onChange={setMaxPrice}
           options={priceOptions}
           placeholder={`max price`}
         />
