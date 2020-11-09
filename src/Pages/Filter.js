@@ -12,34 +12,24 @@ const Filter = () => {
     value: null,
   });
   const [color, setColor] = useState({ key: "paint_color", value: null });
-  const [year, setYear] = useState({ key: "year", value: null });
-  const [size, setSize] = useState({ key: "size", value: null });
   const [state, setState] = useState({ key: "state", value: null });
   const [type, setType] = useState({ key: "type", value: null });
   const [typeOpt, setTypeOpt] = useState([]);
   const [colorOpt, setColorOpt] = useState([]);
-  const [yearOpt, setYearOpt] = useState([]);
-  const [sizeOpt, setSizeOpt] = useState([]);
   const [stateOpt, setStateOpt] = useState([]);
-  const [carsOpt, setCarsOpt] = useState([]);
   const [manufacturerOpt, setManufacturerOpt] = useState([]);
 
   const [newestCars, setNewestCars] = useState([]);
 
-  const filters = [manufacturer, color, year, size, state, type];
+  const filters = [manufacturer, color, state, type];
   let manuOptions = [];
-  let yearOptions = [];
-  let modelOptions = [];
-  let sizeOptions = [];
   let colorOptions = [];
   let stateOptions = [];
   let typeOptions = [];
 
   useEffect(() => {
     axios.get("/manufacturers").then((res) => setManufacturerOpt(res.data));
-    axios.get("/year").then((res) => setYearOpt(res.data));
     axios.get("/type").then((res) => setTypeOpt(res.data));
-    axios.get("/size").then((res) => setSizeOpt(res.data));
     axios.get("/color").then((res) => setColorOpt(res.data));
     axios.get("/state").then((res) => setStateOpt(res.data));
     axios.get("/newest").then((res) => setNewestCars(res.data));
@@ -118,10 +108,10 @@ const Filter = () => {
           enter
         </button>
       </div>
-      <h1 className="newCars">new cars</h1>
+      <h1 className="newCars">Fresh Off the Lot</h1>
       <div className="filter__body">
-        {newestCars.map((car) => (
-          <CarDisplay car={car} />
+        {newestCars.map((car, key) => (
+          <CarDisplay car={car} key={key} />
         ))}
       </div>
       <div className="filter__footer">

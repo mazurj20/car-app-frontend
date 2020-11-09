@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import CarDisplay from "../Components/CarDisplay";
 import axios from "../axios";
 import "../Styles/Result.css";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 
-const Result = () => {
+const Explore = () => {
   const [cars, setCars] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const location = useLocation();
-  const url = location.state.url;
 
   const [sort, setSort] = useState({ value: "Featured", label: "Featured" });
   const sortOptions = ["Featured", "Price: High to Low", "Price: Low to High"];
 
   useEffect(() => {
-    axios.get(url).then((res) => {
+    axios.get("/results").then((res) => {
       setIsLoading(false);
       let newCars = res.data;
       for (let i = 0; i < newCars.length; i++) {
@@ -76,4 +73,4 @@ const Result = () => {
   );
 };
 
-export default Result;
+export default Explore;

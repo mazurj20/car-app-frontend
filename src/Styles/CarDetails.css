@@ -1,7 +1,16 @@
-.cardetail__container {
+.carDetail__container {
+  background: white;
+  padding: 20px;
+}
+
+.carDetail__top {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.carDetail__bottom {
   display: flex;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
 }
 
@@ -16,8 +25,99 @@
 img {
   width: 50%;
 }
-
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: grey;
+  color: white;
+  border-radius: 5px;
+  padding: 3px;
+  text-decoration: none;
+}
 .cardetail__specs {
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+
+.collapse-content {
+  width: 70vw;
+  margin: auto;
+}
+
+.collapse a {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.9rem 1.8rem;
+  color: rgb(43, 41, 41);
+  position: relative;
+}
+
+.collapse a.description {
+  border-bottom: solid #a8a1a4;
+}
+
+.collapse a:before {
+  content: "";
+  border-top: 7px solid #fff;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  position: absolute;
+  top: 25px;
+  right: 30px;
+}
+
+.inner-content {
+  padding: 1.8rem;
+}
+
+.content {
+  max-height: 0em;
+  transition: 0.3s linear 0s;
+  overflow: scroll;
+}
+
+.collapse:target .content {
+  min-height: 15em;
+}
+
+.collapse:target a:before {
+  transform: rotate(-90deg);
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .collapse-content {
+    width: 80vw;
+    margin: auto;
+  }
+}
+@media (max-width: 425px) {
+  body {
+    line-height: 1.3;
+  }
+  .collapse-content {
+    width: 80vw;
+  }
+  .inner-content {
+    padding: 1.2rem;
+  }
+  .inner-content h3 {
+    margin-bottom: 0.3rem;
+  }
+}
+@media (max-width: 320px) {
+  body {
+    line-height: 1.3;
+  }
+  .collapse-content {
+    width: 80vw;
+  }
+  .inner-content {
+    padding: 0.8rem;
+  }
+  .inner-content h3 {
+    margin-bottom: 0.3rem;
+  }
 }
