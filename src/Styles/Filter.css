@@ -1,3 +1,10 @@
+.filter__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .filter__header {
   background-image: url("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2018-volvo-s90-t6-awd-placement-1530115711.jpg?crop=1.00xw:0.822xh;0,0.110xh&resize=1200:*");
   background-size: cover;
@@ -6,12 +13,16 @@
   height: 60vh;
   color: white;
   padding: 10px;
+  width: 100%;
 }
 .filter__filter {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    "grid1 grid2 grid3"
+    "grid4 grid5 grid5";
   background-color: rgb(223, 223, 223);
   padding: 5px;
+  width: 80%;
 }
 .filter__body {
   display: grid;
@@ -23,4 +34,20 @@
   background-color: rgb(102, 102, 155);
   height: 30vh;
   width: 100%;
+}
+
+.grid1 {
+  grid-area: grid1;
+}
+.grid2 {
+  grid-area: grid2;
+}
+.grid3 {
+  grid-area: grid3;
+}
+.grid4 {
+  grid-area: grid4;
+}
+.grid5 {
+  grid-area: grid5;
 }

@@ -13,14 +13,12 @@ const Filter = () => {
   });
   const [color, setColor] = useState({ key: "paint_color", value: null });
   const [year, setYear] = useState({ key: "year", value: null });
-  const [model, setModel] = useState({ key: "model", value: null });
   const [size, setSize] = useState({ key: "size", value: null });
   const [state, setState] = useState({ key: "state", value: null });
+  const [type, setType] = useState({ key: "type", value: null });
+  const [typeOpt, setTypeOpt] = useState([]);
   const [colorOpt, setColorOpt] = useState([]);
   const [yearOpt, setYearOpt] = useState([]);
-  const [modelOpt, setModelOpt] = useState([
-    { manufacturer: null, model: null },
-  ]);
   const [sizeOpt, setSizeOpt] = useState([]);
   const [stateOpt, setStateOpt] = useState([]);
   const [carsOpt, setCarsOpt] = useState([]);
@@ -28,18 +26,19 @@ const Filter = () => {
 
   const [newestCars, setNewestCars] = useState([]);
 
-  const filters = [manufacturer, model, color, year, size, state];
+  const filters = [manufacturer, color, year, size, state, type];
   let manuOptions = [];
   let yearOptions = [];
   let modelOptions = [];
   let sizeOptions = [];
   let colorOptions = [];
   let stateOptions = [];
+  let typeOptions = [];
 
   useEffect(() => {
     axios.get("/manufacturers").then((res) => setManufacturerOpt(res.data));
     axios.get("/year").then((res) => setYearOpt(res.data));
-    axios.get("/model").then((res) => setModelOpt(res.data));
+    axios.get("/type").then((res) => setTypeOpt(res.data));
     axios.get("/size").then((res) => setSizeOpt(res.data));
     axios.get("/color").then((res) => setColorOpt(res.data));
     axios.get("/state").then((res) => setStateOpt(res.data));
@@ -81,36 +80,43 @@ const Filter = () => {
   createSelections(manufacturerOpt, "manufacturer", manuOptions);
   createSelections(colorOpt, "paint_color", colorOptions);
   createSelections(stateOpt, "state", stateOptions);
+  createSelections(typeOpt, "type", typeOptions);
 
   return (
-    <div>
+    <div className="filter__container">
       <h1 className="filter__header">Find your next match</h1>
       <div className="filter__filter">
         <Select
+          className="grid1"
           defaultValue={"manufacturer"}
           onChange={setManufacturer}
           options={manuOptions}
           placeholder={"manufacterer"}
         />
         <Select
+          className="grid2"
           defaultValue={"state"}
           onChange={setState}
           options={stateOptions}
           placeholder={"state"}
         />
         <Select
+          className="grid3"
           defaultValue={"color"}
           onChange={setColor}
           options={colorOptions}
           placeholder={"color"}
         />
         <Select
-          defaultValue={"model"}
-          onChange={setModel}
-          options={modelOptions}
-          placeholder={"model"}
+          className="grid4"
+          defaultValue={"type"}
+          onChange={setType}
+          options={typeOptions}
+          placeholder={"type"}
         />
-        <button onClick={handleFilterSubmit}>enter</button>
+        <button className="grid5" onClick={handleFilterSubmit}>
+          enter
+        </button>
       </div>
       <h1 className="newCars">new cars</h1>
       <div className="filter__body">
