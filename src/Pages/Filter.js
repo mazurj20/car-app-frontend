@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import axios from "../axios.js";
 import { useHistory } from "react-router-dom";
-import '../Styles/Filter.css'
-import CarDisplay from '../Components/CarDisplay'
+import "../Styles/Filter.css";
+import CarDisplay from "../Components/CarDisplay";
 
 const Filter = () => {
   const history = useHistory();
@@ -26,7 +26,7 @@ const Filter = () => {
   const [carsOpt, setCarsOpt] = useState([]);
   const [manufacturerOpt, setManufacturerOpt] = useState([]);
 
-  const [newestCars, setNewestCars] = useState([])
+  const [newestCars, setNewestCars] = useState([]);
 
   const filters = [manufacturer, model, color, year, size, state];
   let manuOptions = [];
@@ -81,34 +81,38 @@ const Filter = () => {
   createSelections(manufacturerOpt, "manufacturer", manuOptions);
   createSelections(colorOpt, "paint_color", colorOptions);
   createSelections(stateOpt, "state", stateOptions);
-  
+
   return (
     <div>
       <h1 className="filter__header">Find your next match</h1>
       <div className="filter__filter">
-          <Select
-            defaultValue={manufacturer}
-            onChange={setManufacturer}
-            options={manuOptions}
-          />
-          <Select
-            defaultValue={state}
-            onChange={setState}
-            options={stateOptions}
-          />
-          <Select
-            defaultValue={color}
-            onChange={setColor}
-            options={colorOptions}
-          />
-          <Select
-            defaultValue={model}
-            onChange={setModel}
-            options={modelOptions}
-          />
-          <button onClick={handleFilterSubmit}>enter</button>
+        <Select
+          defaultValue={"manufacturer"}
+          onChange={setManufacturer}
+          options={manuOptions}
+          placeholder={"manufacterer"}
+        />
+        <Select
+          defaultValue={"state"}
+          onChange={setState}
+          options={stateOptions}
+          placeholder={"state"}
+        />
+        <Select
+          defaultValue={"color"}
+          onChange={setColor}
+          options={colorOptions}
+          placeholder={"color"}
+        />
+        <Select
+          defaultValue={"model"}
+          onChange={setModel}
+          options={modelOptions}
+          placeholder={"model"}
+        />
+        <button onClick={handleFilterSubmit}>enter</button>
       </div>
-      <h1>new cars</h1>
+      <h1 className="newCars">new cars</h1>
       <div className="filter__body">
         {newestCars.map((car) => (
           <CarDisplay car={car} />
