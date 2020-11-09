@@ -26,3 +26,8 @@
 .carDisplay__right {
   padding: 20px;
 }
+
+.carDisplay__specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
