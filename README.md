@@ -1,33 +1,25 @@
-# Tim and Jacobs's Used Cars
+# Car App
 
-- [Tim and Jacobs's Used Cars](#im-and-Jacobs's-Used-Cars)
-  - [Installation](#installation)
-  - [Deployment](#deployment)
-  - [Font-end](#front-end)
+This is a full stack web application providing users the ability to search for used cars through a variety of query parameters, and options to sort those results. This project was built with MongoDB, ExpressJS, ReactJS, and NodeJS, and is deployed through Netlify at https://used-cars.netlify.app/.
+
+# Overview
+
+- [Overview](#overview)
+  - [Front-end](#front-end)
+
     - [Technologies Used](#technologies-used)
     - [Dependencies](#dependencies)
   - [Back-end](#back-end)
     - [Technologies Used](#technologies-used-1)
     - [Dependencies](#dependencies-1)
     - [Authentication](#authentication)
-    - [Routes Available](#routes-available)
-
-## Installation
-
-Information and instructions on setting up a development environment can be found in the [wiki](https://github.com/SEI-39/developerverse/wiki/Development-Environment)
-
-## Deployment
-
-For information on Netlify deployment see the Wiki @ [Netlify](https://github.com/SEI-39/developerverse/wiki/Deployed-via-Netlify)
-
-For Heroku deployment see the Wiki @ [Heroku](https://github.com/SEI-39/developerverse/wiki/Deploying-via-Heroku)
+    - [Server and Database](#server-and-database)
 
 ## Front-end
 
 ### Technologies Used
 
 - [JavaScript](https://www.javascript.com/)
-- [NodeJS](https://nodejs.org/en/)
 - [Netlify](https://www.netlify.com/) - A free website hosting service
 
 ### Dependencies
@@ -41,41 +33,22 @@ For Heroku deployment see the Wiki @ [Heroku](https://github.com/SEI-39/develope
 
 ### Technologies Used
 
-- [Python](https://www.python.org/)
-- [Heroku](https://www.heroku.com/) - to host a deployed version of the API remote
-- [PostgreSQL](https://www.postgresql.org/) - An open source SQL database
+- [NodeJS](https://nodejs.org/en/) - An event-driven JavaScript runtime designed to build scalable network applications
+- [MongoDB](https://www.mongodb.com/) - A document-oreinted NoSQL database
+- [Heroku](https://www.heroku.com/) - A platform providing cloud-based hosting services
 
 ### Dependencies
 
-- [Django](https://www.djangoproject.com/) - A high level Python Web Framework
-- [Django Rest Framework](https://www.django-rest-framework.org/) - A Django extension for building APIs
+- [ExpressJS](https://expressjs.com/) - A NodeJS framework used for server side development
+- [Mongoose](https://www.npmjs.com/package/mongoose) - A MongoDB object modeling tool
+- [Cors](https://www.npmjs.com/package/cors) - A package providing cross-origin resource sharing
+- [Dotenv](https://www.npmjs.com/package/dotenv) - A module for loading environment variables from a .env file into process.env
 
-### Authentication
+### Data
 
-In order to authenticate, you need to create an account or log in with an email and password on the route `users/create`
+The dataset used in this project was scraped from Craigslist and can be found at https://www.kaggle.com/austinreese/craigslist-carstrucks-data
 
-Once created, you will recieve a token as a response
+### Server and Database
 
-Add that token to your request headers in this format:
+The server, database structure, and routes can be found in a separate repository: https://github.com/tmurphy3/car-app-backend.
 
-| **Key** | **Value** |
-| ------- | --------- |
-| Authorization | token *your token here* |
-
-And you will have full access to the API!
-
-### Routes Available
-
-The following routes are available
-
-| **Route name**  | **URL**                 | **HTTP Verb** | **Description**                                                         |
-| --------------- | ----------------------- | ------------- | ----------------------------------------------------------------------- |
-| Index*          | /{resource}             | GET           | Display a list of all Project or Comment                                |
-| Show ID*        | /{resource}/{:id}       | GET           | Display a specific Project or Comment based on their ID                 |
-| Create*         | /{resource}/create      | POST          | Add new Project or Comment to the database, returns the newly created entry |
-| Edit By Id*     | /{resource}/{:id}       | PATCH         | Update a particular Game or Review, returns the new entry               |
-| Delete By Id*   | /{resource}/{:id}       | DELETE        | Delete a particular Game or Review                                      |
-| Login           | /users/login            | POST          | Logs in with a username and password, returns an authentication token   |
-| Create          | /users/create           | POST          | Creates a user and returns an authentication token                      |
-
-Routes marked with `*` need authentication to be accessed
