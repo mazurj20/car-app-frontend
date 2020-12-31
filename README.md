@@ -6,6 +6,7 @@ This is a full stack web application providing users the ability to search for u
 
 - [Overview](#overview)
   - [Front-end](#front-end)
+
     - [Technologies Used](#technologies-used)
     - [Dependencies](#dependencies)
   - [Back-end](#back-end)
