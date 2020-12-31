@@ -1,6 +1,6 @@
 # Car App
 
-This is a full stack web application providing users the ability to search for used cars through a variety of query parameters, and the option to sort the results. This project was built with MongoDB, ExpressJS, ReactJS, and NodeJS, and is deployed through Netlify at https://redditv2.netlify.app/.
+This is a full stack web application providing users the ability to search for used cars through a variety of query parameters, and options to sort those results. This project was built with MongoDB, ExpressJS, ReactJS, and NodeJS, and is deployed through Netlify at https://redditv2.netlify.app/.
 
 # Overview
 
