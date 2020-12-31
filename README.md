@@ -1,68 +1,81 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Tim and Jacobs's Used Cars
 
-## Available Scripts
+- [Tim and Jacobs's Used Cars](#im-and-Jacobs's-Used-Cars)
+  - [Installation](#installation)
+  - [Deployment](#deployment)
+  - [Font-end](#front-end)
+    - [Technologies Used](#technologies-used)
+    - [Dependencies](#dependencies)
+  - [Back-end](#back-end)
+    - [Technologies Used](#technologies-used-1)
+    - [Dependencies](#dependencies-1)
+    - [Authentication](#authentication)
+    - [Routes Available](#routes-available)
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+Information and instructions on setting up a development environment can be found in the [wiki](https://github.com/SEI-39/developerverse/wiki/Development-Environment)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Deployment
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+For information on Netlify deployment see the Wiki @ [Netlify](https://github.com/SEI-39/developerverse/wiki/Deployed-via-Netlify)
 
-### `npm test`
+For Heroku deployment see the Wiki @ [Heroku](https://github.com/SEI-39/developerverse/wiki/Deploying-via-Heroku)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Front-end
 
-### `npm run build`
+### Technologies Used
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [JavaScript](https://www.javascript.com/)
+- [NodeJS](https://nodejs.org/en/)
+- [Netlify](https://www.netlify.com/) - A free website hosting service
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [ReactJS](https://reactjs.org/) - A client-side JavaScript library for building interfaces
+- [Axios](https://www.npmjs.com/package/axios) - Promise based HTTP client for the browser and node.js
+- [React-Router](https://www.npmjs.com/package/react-router) - A package providing dynamic routing functionality for web apps
+- [React-Router-Dom](https://www.npmjs.com/package/react-router-dom) - A package containing the DOM bindings for react-router
 
-### `npm run eject`
+## Back-end 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Technologies Used
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [Python](https://www.python.org/)
+- [Heroku](https://www.heroku.com/) - to host a deployed version of the API remote
+- [PostgreSQL](https://www.postgresql.org/) - An open source SQL database
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Dependencies
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- [Django](https://www.djangoproject.com/) - A high level Python Web Framework
+- [Django Rest Framework](https://www.django-rest-framework.org/) - A Django extension for building APIs
 
-## Learn More
+### Authentication
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+In order to authenticate, you need to create an account or log in with an email and password on the route `users/create`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Once created, you will recieve a token as a response
 
-### Code Splitting
+Add that token to your request headers in this format:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+| **Key** | **Value** |
+| ------- | --------- |
+| Authorization | token *your token here* |
 
-### Analyzing the Bundle Size
+And you will have full access to the API!
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Routes Available
 
-### Making a Progressive Web App
+The following routes are available
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+| **Route name**  | **URL**                 | **HTTP Verb** | **Description**                                                         |
+| --------------- | ----------------------- | ------------- | ----------------------------------------------------------------------- |
+| Index*          | /{resource}             | GET           | Display a list of all Project or Comment                                |
+| Show ID*        | /{resource}/{:id}       | GET           | Display a specific Project or Comment based on their ID                 |
+| Create*         | /{resource}/create      | POST          | Add new Project or Comment to the database, returns the newly created entry |
+| Edit By Id*     | /{resource}/{:id}       | PATCH         | Update a particular Game or Review, returns the new entry               |
+| Delete By Id*   | /{resource}/{:id}       | DELETE        | Delete a particular Game or Review                                      |
+| Login           | /users/login            | POST          | Logs in with a username and password, returns an authentication token   |
+| Create          | /users/create           | POST          | Creates a user and returns an authentication token                      |
 
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Routes marked with `*` need authentication to be accessed
