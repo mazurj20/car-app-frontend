@@ -4,6 +4,7 @@ import axios from "../axios.js";
 import { useHistory } from "react-router-dom";
 import "../Styles/Filter.css";
 import CarDisplay from "../Components/CarDisplay";
+import { Alert } from "@material-ui/lab";
 
 const Filter = () => {
   const history = useHistory();
@@ -75,6 +76,9 @@ const Filter = () => {
   return (
     <div className="filter__container">
       <h1 className="filter__header">Find your next match</h1>
+      <Alert severity="warning" style={{ margin: "10px" }}>
+        App under maintenance — outdated data
+      </Alert>
       <div className="filter__filter">
         <Select
           className="grid1"

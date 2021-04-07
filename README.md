@@ -28,7 +28,9 @@ This is a full stack web application providing users the ability to search for u
 - [Axios](https://www.npmjs.com/package/axios) - Promise based HTTP client for the browser and node.js
 - [React-Router](https://www.npmjs.com/package/react-router) - A package providing dynamic routing functionality for web apps
 - [React-Router-Dom](https://www.npmjs.com/package/react-router-dom) - A package containing the DOM bindings for react-router
+
 - [React-Select](https://github.com/JedWatson/react-select) - A package providing input control for React.js
+
 
 ## Back-end 
 
@@ -51,5 +53,5 @@ The dataset used in this project was scraped from Craigslist and can be found at
 
 ### Server and Database
 
-The server, database structure, and routes can be found in a separate repository: https://github.com/tmurphy3/car-app-backend.
+The server, database structure, and routes can be found in a separate repository: https://github.com/mazurj20/car-app-backend.
 
